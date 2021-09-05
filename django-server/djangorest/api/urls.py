@@ -1,7 +1,8 @@
 from django.urls import path
-
-from . import views
+from .views import CategoryApiView, OfferApiView
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('category', CategoryApiView.as_view()),
+    path('offer/', OfferApiView.as_view()),
+    path('offer/<int:offer_id>/', OfferApiView.as_view())
 ]
