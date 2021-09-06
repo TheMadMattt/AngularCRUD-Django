@@ -54,7 +54,8 @@ class OfferViewSet(viewsets.ModelViewSet):
     def list(self, request, **kwargs):
         category_id = self.request.query_params.get('category')
         if category_id:
-            offers = self.queryset.filter(category=category_id)
+            category_id = map(int, category_id.split(','))
+            offers = self.queryset.filter(category__in=category_id)
             serializer = self.serializer_class(offers, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         offers = self.get_queryset()
