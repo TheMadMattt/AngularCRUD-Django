@@ -38,7 +38,7 @@
             </mat-select>
           </mat-form-field>
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.category_name | titlecase }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.category.name | titlecase }} </mat-cell>
       </ng-container>
 
       <!-- Created Column -->
@@ -48,7 +48,7 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'detail/' + row.id"></mat-row >
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'offers/detail/' + row.id"></mat-row >
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="offers.length" aria-label="Select page of offers"></mat-paginator>
