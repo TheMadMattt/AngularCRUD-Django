@@ -1,0 +1,15 @@
+.offer-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+mat-card {
+  padding: 2%;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}

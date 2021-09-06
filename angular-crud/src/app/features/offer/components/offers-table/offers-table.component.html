@@ -1,0 +1,56 @@
+<div>
+  <div>
+    <h2>Offers list</h2>
+  </div>
+  <div class="offers-table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+      </ng-container>
+
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.price/100.0 | number:'1.2-2' }} </mat-cell>
+      </ng-container>
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select multiple [formControl]="categoryFormControl">
+              <mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{ category.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.category_name | titlecase }} </mat-cell>
+      </ng-container>
+
+      <!-- Created Column -->
+      <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.created_at | date }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'detail/' + row.id"></mat-row >
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="offers.length" aria-label="Select page of offers"></mat-paginator>
+  </div>
+</div>

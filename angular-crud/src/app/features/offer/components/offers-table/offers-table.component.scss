@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+.offers-table {
+  margin: 0 3%;
+}
+
+mat-row:hover {
+  transform: scale(1.05);
+  transform-origin: top;
+}
+
+mat-header-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}

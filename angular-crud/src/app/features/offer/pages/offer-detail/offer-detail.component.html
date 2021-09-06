@@ -1,0 +1,15 @@
+<div class="offer-detail-container">
+  <mat-card class="example-card" *ngIf="(offer$ | async) as offer">
+    <mat-card-header>
+      <mat-card-title>{{ offer.title }}</mat-card-title>
+      <mat-card-subtitle>{{ offer.category_name | titlecase }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ offer.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="goBack()">Return</button>
+      <button mat-raised-button color="primary">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

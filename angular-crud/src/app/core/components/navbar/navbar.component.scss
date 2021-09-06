@@ -1,0 +1,16 @@
+span {
+  margin-right: 5%;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 5%;
+  width: 100%;
+}
+
+mat-toolbar {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}

@@ -1,0 +1,17 @@
+.create-offer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+mat-form-field {
+  min-width: 300px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5%;
+}
