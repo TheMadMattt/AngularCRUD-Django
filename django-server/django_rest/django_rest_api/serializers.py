@@ -5,10 +5,10 @@ from . import models
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
-        fields = ('id', 'name')
+        fields = "__all__"
 
 
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Offer
-        fields = ('id', 'title', 'description', 'price', 'created_at', 'category')
+        fields = "__all__"
