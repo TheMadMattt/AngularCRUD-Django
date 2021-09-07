@@ -83,3 +83,13 @@ class OfferViewSet(viewsets.ModelViewSet):
             offer.delete()
             return Response('Object deleted.', status=status.HTTP_200_OK)
         return Response('Object not found.', status=status.HTTP_404_NOT_FOUND)
+
+    def update(self, request, *args, **kwargs):
+        offer = self.get_object()
+        if offer:
+            serializer = serializers.OfferSerializer(instance=offer, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response("Object with offer id does not exists", status=status.HTTP_400_BAD_REQUEST)
