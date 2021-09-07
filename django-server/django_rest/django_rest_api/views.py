@@ -56,16 +56,16 @@ class OfferViewSet(viewsets.ModelViewSet):
         if category_id:
             category_id = map(int, category_id.split(','))
             offers = self.queryset.filter(category__in=category_id)
-            serializer = self.serializer_class(offers, many=True)
+            serializer = serializers.OfferReadSerializer(offers, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         offers = self.get_queryset()
-        serializer = self.serializer_class(offers, many=True)
+        serializer = serializers.OfferReadSerializer(offers, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def get(self):
+    def retrieve(self, request, pk):
         offer = self.get_object()
         if offer:
-            serializer = serializers.OfferSerializer(offer)
+            serializer = serializers.OfferReadSerializer(offer)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response("Object with offer id does not exists", status=status.HTTP_400_BAD_REQUEST)
 
@@ -87,7 +87,7 @@ class OfferViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         offer = self.get_object()
         if offer:
-            serializer = serializers.OfferSerializer(instance=offer, data=request.data, partial=True)
+            serializer = self.serializer_class(instance=offer, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)

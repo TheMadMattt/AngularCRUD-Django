@@ -9,8 +9,15 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
 
     class Meta:
         model = models.Offer
         fields = "__all__"
+
+
+class OfferReadSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Offer
+        fields = "__all__"
+        depth = 1
