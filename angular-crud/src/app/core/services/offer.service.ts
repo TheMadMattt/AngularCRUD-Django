@@ -27,4 +27,8 @@ export class OfferService {
   createOffer(offer: any): Observable<Offer> {
     return this.httpClient.post<any>(this.apiUrl, offer);
   }
+
+  updateOffer(offer: any, id: number): Observable<Offer> {
+    return this.httpClient.put<any>(this.apiUrl + id + '/', offer);
+  }
 }

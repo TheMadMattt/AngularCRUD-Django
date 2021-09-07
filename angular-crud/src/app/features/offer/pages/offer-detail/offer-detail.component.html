@@ -6,10 +6,14 @@
     </mat-card-header>
     <mat-card-content>
       <p>{{ offer.description }}</p>
+      <span></span>
+      <div>
+        <h2>{{ offer.price/100.0 | currency }}</h2>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="goBack()">Return</button>
-      <button mat-raised-button color="primary">Edit</button>
+      <button mat-raised-button color="primary" [routerLink]="'../../edit/' + offerId">Edit</button>
     </mat-card-actions>
   </mat-card>
 </div>

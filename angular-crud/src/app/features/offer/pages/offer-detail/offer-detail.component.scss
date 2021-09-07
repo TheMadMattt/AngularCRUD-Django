@@ -9,6 +9,22 @@ mat-card {
   padding: 2%;
 }
 
+mat-card-content {
+  min-height: 50px;
+  min-width: 300px;
+
+  h2 {
+    text-align: end;
+  }
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 mat-card-actions {
   display: flex;
   justify-content: space-between;

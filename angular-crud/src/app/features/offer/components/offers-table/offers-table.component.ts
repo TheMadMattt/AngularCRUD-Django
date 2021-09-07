@@ -25,7 +25,7 @@ export class OffersTableComponent implements OnInit, AfterViewInit {
   offers: Offer[] = [];
   categories$!: Observable<Category[]>;
 
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: MatTableDataSource<Offer>;
 
   categoryFormControl = new FormControl(null);
 

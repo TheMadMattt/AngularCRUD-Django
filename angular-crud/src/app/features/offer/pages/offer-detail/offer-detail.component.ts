@@ -12,14 +12,15 @@ import {Location} from "@angular/common";
 })
 export class OfferDetailComponent implements OnInit {
   offer$!: Observable<Offer>;
+  offerId!: number;
 
   constructor(private offerService: OfferService,
               private route: ActivatedRoute,
               private location: Location) { }
 
   ngOnInit(): void {
-    const offerId = this.route.snapshot.params.id;
-    this.offer$ = this.offerService.get(offerId);
+    this.offerId = this.route.snapshot.params.id;
+    this.offer$ = this.offerService.get(this.offerId);
   }
 
   goBack() {
