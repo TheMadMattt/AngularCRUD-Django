@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OfferService} from "../../../../core/services/offer.service";
 import {CategoryService} from "../../../../core/services/category.service";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Category} from "../../../../core/models/Category";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Offer} from "../../../../core/models/Offer";
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-edit-offer',
@@ -21,7 +22,8 @@ export class AddEditOfferComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private offerService: OfferService,
               private categoryService: CategoryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
     this.createOfferFb = this.fb.group({
       title: [null, Validators.required],
       description: [null, Validators.required],
@@ -48,13 +50,22 @@ export class AddEditOfferComponent implements OnInit {
       return;
     }
 
-    let offer = this.createOfferFb.value;
-    offer.price = offer.price*100.0;
+    const offerFormValue = this.createOfferFb.value;
+    const offer = {
+      title: offerFormValue.title,
+      description: offerFormValue.description,
+      price: offerFormValue.price*100.0,
+      category: offerFormValue.category,
+    }
 
     if (this.isEditing) {
-      this.offerService.updateOffer(offer, this.offerId).subscribe(console.log);
+      this.offerService.updateOffer(offer, this.offerId).pipe(
+        finalize(() => this.router.navigate(['/offers']))
+      ).subscribe(console.log);
     } else {
-      this.offerService.createOffer(offer).subscribe(console.log);
+      this.offerService.createOffer(offer).pipe(
+        finalize(() => this.router.navigate(['/offers']))
+      ).subscribe(console.log);
     }
   }
 }
