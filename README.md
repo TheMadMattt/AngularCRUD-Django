@@ -7,9 +7,22 @@ To run django server:
 1. Go to "django-server" folder.
 2. Run script "start.sh"
 
+## SERVER ADDRESS: 
+
+127.0.0.1:8000 or localhost:8000
+
+## ENDPOINTS:
+
+Offers: SERVER_ADDRESS/api/v1/offers/
+
+Categories: SERVER_ADDRESS/api/v1/offers/
+
 # Angular app
 
 1. Open project in Visual Studio Code or WebStorm.
 2. Run "npm install" in terminal opened in project's folder.
 3. If it's over, run "npm start".
 
+## SERVER ADDRESS:
+
+127.0.0.1:4200 or localhost:4200
