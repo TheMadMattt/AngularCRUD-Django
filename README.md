@@ -12,6 +12,8 @@ Of course make sure you have *python* installed :-)
 #### SERVER ADDRESS: 
 127.0.0.1:8000 or localhost:8000
 
+Login and password to Django admin site: insert
+
 #### ENDPOINTS:
 ##### Offers: 
 * /api/v1/offers/ : **POST, GET ALL**
