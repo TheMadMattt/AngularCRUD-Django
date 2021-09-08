@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>
+  Are you sure you want to delete <i>{{ offer.id }}. {{ offer.title }}</i>?
+</h2>
+<mat-divider></mat-divider>
+<div mat-dialog-actions class="confirm-action-buttons">
+  <button mat-raised-button type="button" color="warn" (click)="confirm()">No</button>
+  <button mat-raised-button type="button" color="primary" (click)="confirm(true)">Yes</button>
+</div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpRequest, HttpResponse} from "@angular/common/http";
+import {Observable, of} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {Offer} from "../models/Offer";
 
@@ -21,7 +21,7 @@ export class OfferService {
   }
 
   filterByCategory(categories: string): Observable<Offer[]> {
-    return this.httpClient.get<Offer[]>(this.apiUrl + '?category='+categories);
+    return this.httpClient.get<Offer[]>(this.apiUrl + '?category=' + categories);
   }
 
   createOffer(offer: any): Observable<Offer> {
@@ -30,5 +30,9 @@ export class OfferService {
 
   updateOffer(offer: any, id: number): Observable<Offer> {
     return this.httpClient.put<any>(this.apiUrl + id + '/', offer);
+  }
+
+  deleteOffer(offerId: number): Observable<any> {
+    return this.httpClient.delete<any>(this.apiUrl + offerId + '/', { observe: 'response' });
   }
 }

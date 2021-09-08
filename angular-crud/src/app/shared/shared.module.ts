@@ -12,11 +12,21 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDividerModule} from "@angular/material/divider";
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ConfirmDialogComponent
+  ],
+  imports: [
+    MatDialogModule,
+    MatDividerModule,
+    MatButtonModule
+  ],
   exports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,7 +40,7 @@ import {MatCardModule} from "@angular/material/card";
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
   ]
 })
 export class SharedModule { }

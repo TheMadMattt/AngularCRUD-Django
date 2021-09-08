@@ -3,25 +3,25 @@
 
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.id }} </mat-cell>
     </ng-container>
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.title }} </mat-cell>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.description }} </mat-cell>
     </ng-container>
 
     <!-- Price Column -->
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.price/100.0 | currency }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.price/100.0 | currency }} </mat-cell>
     </ng-container>
 
     <!-- Category Column -->
@@ -34,17 +34,25 @@
           </mat-select>
         </mat-form-field>
       </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.category.name | titlecase }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.category.name | titlecase }} </mat-cell>
     </ng-container>
 
     <!-- Created Column -->
     <ng-container matColumnDef="created">
       <mat-header-cell *matHeaderCellDef> Created </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.created_at | date }} </mat-cell>
+      <mat-cell *matCellDef="let element" [routerLink]="'detail/' + element.id"> {{ element.created_at | date }} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" (click)="deleteOffer(element)">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'detail/' + row.id"></mat-row >
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="offers.length" aria-label="Select page of offers"></mat-paginator>

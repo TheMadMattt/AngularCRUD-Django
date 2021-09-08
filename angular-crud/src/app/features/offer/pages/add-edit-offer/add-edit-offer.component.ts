@@ -54,18 +54,18 @@ export class AddEditOfferComponent implements OnInit {
     const offer = {
       title: offerFormValue.title,
       description: offerFormValue.description,
-      price: offerFormValue.price*100.0,
+      price: Math.round(offerFormValue.price*100.0),
       category: offerFormValue.category,
     }
 
     if (this.isEditing) {
       this.offerService.updateOffer(offer, this.offerId).pipe(
         finalize(() => this.router.navigate(['/offers']))
-      ).subscribe(console.log);
+      ).subscribe();
     } else {
       this.offerService.createOffer(offer).pipe(
         finalize(() => this.router.navigate(['/offers']))
-      ).subscribe(console.log);
+      ).subscribe();
     }
   }
 }
