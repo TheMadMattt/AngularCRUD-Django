@@ -9,15 +9,17 @@ To run django server:
 
 Of course make sure you have *python* installed :-) 
 
-## SERVER ADDRESS: 
+### SERVER ADDRESS: 
 
 127.0.0.1:8000 or localhost:8000
 
-## ENDPOINTS:
+### ENDPOINTS:
 
-Offers: SERVER_ADDRESS/api/v1/offers/
-
-Categories: SERVER_ADDRESS/api/v1/offers/
+#### Offers: 
+* /api/v1/offers/ : POST
+* /api/v1/offers/id<number> : GET (one), DELETE, PUT
+  
+#### Categories: SERVER_ADDRESS/api/v1/offers/
 
 # Angular app
 
