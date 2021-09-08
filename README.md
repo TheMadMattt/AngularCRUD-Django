@@ -16,8 +16,9 @@ Of course make sure you have *python* installed :-)
 ### ENDPOINTS:
 
 #### Offers: 
-* /api/v1/offers/ : POST
-* /api/v1/offers/id<number> : GET (one), DELETE, PUT
+* /api/v1/offers/ : **POST, GET ALL**
+* /api/v1/offers/<id:number> : **GET (one), DELETE, PUT**
+* /api/v1/offers/?category=<ids:string> : **GET ALL (filtered by category id, possible mulitple categories after comma i.e. '1,2,3'
   
 #### Categories: SERVER_ADDRESS/api/v1/offers/
 
