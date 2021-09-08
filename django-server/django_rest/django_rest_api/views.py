@@ -11,7 +11,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CategorySerializer
     ordering_fields = ['name']
 
-    # 1. List all
+    # 1. GET all categories
     def list(self, request, **kwargs):
         ordering = self.request.query_params.get('ordering')
         category = self.get_queryset()
@@ -20,7 +20,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(category, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # 2. Create
+    # 2. POST category
     def create(self, request, **kwargs):
         category = request.data
         serializer = self.serializer_class(data=category)
@@ -29,6 +29,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
 
+    # 3. DELETE category
     def destroy(self, request, **kwargs):
         category = self.get_object()
         if category:
@@ -36,6 +37,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
             return Response('Object deleted.', status=status.HTTP_200_OK)
         return Response('Object not found.', status=status.HTTP_404_NOT_FOUND)
 
+    # 4. PUT category
     def update(self, request, *args, **kwargs):
         category = self.get_object()
         if category:
@@ -51,6 +53,7 @@ class OfferViewSet(viewsets.ModelViewSet):
     queryset = models.Offer.objects.all()
     serializer_class = serializers.OfferSerializer
 
+    # 1. GET all or GET all filtered by category (query param)
     def list(self, request, **kwargs):
         category_id = self.request.query_params.get('category')
         if category_id:
@@ -62,6 +65,7 @@ class OfferViewSet(viewsets.ModelViewSet):
         serializer = serializers.OfferReadSerializer(offers, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    # 2. GET offer with category object
     def retrieve(self, request, pk):
         offer = self.get_object()
         if offer:
@@ -69,6 +73,7 @@ class OfferViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response("Object with offer id does not exists", status=status.HTTP_400_BAD_REQUEST)
 
+    # 3. POST offer
     def create(self, request, **kwargs):
         offer = request.data
         serializer = self.serializer_class(data=offer)
@@ -77,6 +82,7 @@ class OfferViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # 4. DELETE offer
     def destroy(self, request, **kwargs):
         offer = self.get_object()
         if offer:
@@ -84,6 +90,7 @@ class OfferViewSet(viewsets.ModelViewSet):
             return Response('Object deleted.', status=status.HTTP_200_OK)
         return Response('Object not found.', status=status.HTTP_404_NOT_FOUND)
 
+    # 5. UPDATE offer
     def update(self, request, *args, **kwargs):
         offer = self.get_object()
         if offer:
