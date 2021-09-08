@@ -9,18 +9,19 @@ To run django server:
 
 Of course make sure you have *python* installed :-) 
 
-### SERVER ADDRESS: 
-
+#### SERVER ADDRESS: 
 127.0.0.1:8000 or localhost:8000
 
-### ENDPOINTS:
-
-#### Offers: 
+#### ENDPOINTS:
+##### Offers: 
 * /api/v1/offers/ : **POST, GET ALL**
 * /api/v1/offers/<id:int> : **GET (one), DELETE, PUT**
-* /api/v1/offers/?category=<ids:string> : **GET ALL (filtered by category id, possible mulitple categories after comma i.e. '1,2,3'
+* /api/v1/offers/?category=<ids:string> : **GET ALL** (filtered by category id, possible mulitple categories after comma i.e. '1,2,3'
   
-#### Categories: SERVER_ADDRESS/api/v1/offers/
+##### Categories: 
+* /api/v1/category/ : **POST, GET ALL**
+* /api/v1/category/<id:int> : **DELETE, PUT**
+
 
 # Angular app
 
